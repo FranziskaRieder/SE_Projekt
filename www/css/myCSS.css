@@ -1,0 +1,305 @@
+body {
+    
+}
+.ui-link {
+   
+    text-transform: none;
+
+}
+#startText{
+    color: #707070;
+}
+.ui-page-theme-a {
+    background-image: linear-gradient( #E9F9E4, #BEE5D3 70%, #8C9A94 90%)
+}
+#content {
+    text-transform: none;
+}
+#chaPics{
+    display:flex;
+
+}
+.item-container {
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    
+    
+   
+}
+
+    .item-container span  {
+        min-width: 32%;
+        max-width: 32%;
+        min-height: 21vh;
+        display: flex;
+        border: 1px solid #707070;
+        background: #0C373D;
+        color: #D4FD70;
+        align-items: center;
+        justify-content: center;
+        margin: 0.3vw;
+        
+        
+        
+    }
+
+        .item-container span:nth-child(1) {
+            
+
+        }
+
+        .item-container span:nth-child(2) {
+            
+        }
+
+        .item-container span:nth-child(3) {
+            
+        }
+
+     
+
+/* basic flex definitions */
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+#Kameraknopf{
+    order: 99; 
+}
+
+#Ueberschrift {
+    background: #0A2C31;
+    color: #D4FD70;
+    height: 50px;
+    font-size: 18px;
+    text-align: center;
+}
+#anfangstext{
+    display: flex;
+    justify-content: center;
+    color: #707070;
+    font-size: 20px;
+    text-align:  center;
+    text-transform:none;
+}
+.Text1 {
+    display: flex;
+    justify-content: center;
+    color: #707070;
+    font-size: 20px;
+    text-align:  center;
+    text-transform:none;
+}
+.Header {
+    display: flex;
+    justify-content: center;
+    color: #333333;
+    font-size: 20px;
+    text-align:  center;
+    text-transform:none;
+}
+#Text2 {
+    display: flex;
+    justify-content: right;
+    color: #333333;
+    font-size: 20px;
+    text-align: right;
+    text-transform:none;
+}
+
+
+
+#RButton {
+  position: absolute;
+  position: fixed;
+  width: 25%;
+  height:auto;
+  right: 10%;
+  bottom:5%;
+}
+#backarrow{
+    position: absolute;
+    left: 5%;
+    width: 12%;
+    height: auto;
+    top: 0;
+}
+#picButton{
+    position: absolute;
+    right: 5%;
+    width: 10%;
+    height: auto;
+    top: 0;
+}
+#StartButton{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    bottom: 0%;
+    text-align: center;
+    animation-name: start ;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+@keyframes start {
+    0%{
+        transform: scale(0.90);
+
+    }
+    50%{
+        transform: scale(1);
+
+    }
+    100%{
+        transform: scale(0.90);
+
+    }
+}
+.ui-input-text, .ui-input-search{
+    
+    font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    color:  #333333;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+}
+.ui-btn{
+    overflow: visible;
+}
+#des_id{
+    position: absolute;
+    resize: none;
+    text-align: center;
+    width: 33vw;
+    top: 20%;
+    padding: 12px 20px;
+    font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    color:  #333333;;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+
+    
+}
+a{
+    color: #D4FD70;
+    text-decoration: none;
+    font-size: large;
+    hyphens: auto;
+    text-align: center;
+    
+}
+#HeaderIcon{
+    width: 100%;
+}
+
+dialog{
+	border-radius: 0 .5rem .5rem;
+	margin: 1rem;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+    html {
+      transform: rotate(-90deg);
+      transform-origin: left top;
+      width: 100vh;
+      overflow-x: hidden;
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
+  }
+  
+
+dialog,
+button {
+	border-radius: .5rem .5rem .5rem;
+	margin: 1rem;
+}
+
+button {
+	padding: 0.5em 1em;
+	font-size: 1em;
+	background-color: #0A2C31;
+	border:1.5px solid rgb(4, 18, 20);
+	color: #D4FD70;
+	
+}
+
+
+
+dialog {
+	width: 20em;
+	background-color: #0A2C31;
+	border-color: #0A2C31;
+	position: absolute;
+	text-align: center;
+	margin: auto;
+	padding: 1em;
+	display: none;
+}
+
+dialog::backdrop {
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+dialog[open] {
+	display: block;
+}
+:focus{
+    outline-color:#0A2C31 ;
+}
+.edit{
+    position: relative;
+    width: fit-content;
+    height: fit-content;
+    background-color: transparent;
+    outline: black;
+    border: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    display: none;
+    
+    
+}
+#smallEdit{
+    width: 20%;
+    height: auto;
+}
+#myImage{
+    width: 30vw;
+    height: 21vh;
+    border-color: #BEE5D3;
+}
+#nameButton{
+    position: absolute;
+    position: fixed;
+    width: 25%;
+    height:25%;
+    right: 10%;
+    bottom:5%;
+    z-index: 100;
+    background-color: transparent;
+    outline: black;
+    border: none;
+    margin: 0;
+    padding: 0;
+    
+}
+#logo{
+    position: relative;
+    width: 80vw;
+    height: auto;
+    left: 10%;
+    top: 7vh;
+
+}

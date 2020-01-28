@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Character.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Character.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @author Franziska Rieder
+ * @version 1.0.0
+ * @file Klasse die einen Charakter darstellt
+ */
+/**
+ * Klasse die einen Charakter darstellt
+ */
+
+class Character{
+
+    /**
+     * Konstruktor der Klasse aufbaut
+     */
+    constructor(){
+        this.id;
+        this.name;
+        this.age;
+        this.gender;
+        this.race; 
+        this.nat;
+        this.h; 
+        this.hair; 
+        this.eyes;
+        this.des;
+    }
+
+     /**
+     * Methode die einen Charakter aus der Datenbank lädt
+     * @return {void}
+     */
+    loadCharacters() {
+      let tx = db.transaction(['one'], "readonly");
+      let store = tx.objectStore('one');
+      store.openCursor().onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+          addHtml(cursor.value.char.name, cursor.value.char.id);
+          cursor.continue();
+          chaId = cursor.value.char.id;
+          chaId++;
+          hideStartingText();
+    
+        } else {
+          console.log('Entries all displayed.');
+        }
+      };
+    }
+     /**
+     * Methode die einen Charakter der Datenbank hinzufügt
+     * @return {void}
+     */
+     addCharacter(char) {
+      // Start a database transaction and get the notes object store
+      let tx = db.transaction(['one'], 'readwrite');
+      let store = tx.objectStore('one');
+    
+      // Put the sticky note into the object store
+      let note = { char };
+      store.add(note);
+    
+      // Wait for the database transaction to complete
+      tx.oncomplete = function () { console.log('stored Charakter!') }
+      tx.onerror = function (event) {
+        alert('error storing note ' + event.target.errorCode);
+      }
+    }
+
+     /**
+     * Methode die einen Charakter aus der Datenbank löscht
+     * @return {void}
+     */
+    removeCharacter() {
+      console.log(key);
+      hidingEditButtons();
+      var request = db.transaction(["one"], "readwrite")
+        .objectStore("one")
+        .delete(key);
+      removeElement(key);
+     
+      request.oncomplete = function (event) {
+        alert(key + "entry has been removed from your database.");
+       
+    
+      };
+    }
+     /**
+     * Methode die den Namen eines Charakters updated
+     * @return {void}
+     */
+    updateName() {
+      // Update with cursor.update
+     var tx = db.transaction("one", "readwrite");
+      var store = tx.objectStore("one");
+      store.openCursor(key).onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+          cursor.value.char.name = document.getElementById('edit_id').value;
+          cursor.update(cursor.value);
+          displayDataByKey(key)
+          hidingEditButtons();
+          var span = document.getElementById(cursor.value.char.id);
+          span.innerHTML = cursor.value.char.name;
+          console.log(span.innerHTML)
+          
+    
+        };
+      }
+    }
+    /**
+     * Methode die das Alter eines Charakters updated
+     * @return {void}
+     */
+    updateAge() {
+      // Update with cursor.update
+      var tx = db.transaction("one", "readwrite");
+      var store = tx.objectStore("one");
+      store.openCursor(key).onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+          cursor.value.char.age = document.getElementById('edit_id').value;
+          cursor.update(cursor.value);
+          displayDataByKey(key)
+          hidingEditButtons();
+        };
+      }
+    }
+
+    /**
+     * Methode die die Rasse eines Charakters updated
+     * @return {void}
+     */
+    updateRace() {
+      // Update with cursor.update
+     var tx = db.transaction("one", "readwrite");
+      var store = tx.objectStore("one");
+      store.openCursor(key).onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+          cursor.value.char.race = document.getElementById('edit_id').value;
+          cursor.update(cursor.value);
+          displayDataByKey(key)
+          hidingEditButtons();
+        };
+      }
+    }
+
+    /**
+     * Methode die das Geschlecht eines Charakters updated
+     * @return {void}
+     */
+    updateGender() {
+      // Update with cursor.update
+      var tx = db.transaction("one", "readwrite");
+      var store = tx.objectStore("one");
+      store.openCursor(key).onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+          cursor.value.char.gender = document.getElementById('edit_id').value;
+          cursor.update(cursor.value);
+          displayDataByKey(key)
+          hidingEditButtons();
+        };
+      }
+    }
+    /**
+     * Methode die die Nationalität eines Charakters updated
+     * @return {void}
+     */
+    updateNat() {
+      // Update with cursor.update
+      var tx = db.transaction("one", "readwrite");
+      var store = tx.objectStore("one");
+      store.openCursor(key).onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+          cursor.value.char.nat = document.getElementById('edit_id').value;
+          cursor.update(cursor.value);
+          displayDataByKey(key)
+          hidingEditButtons();
+        };
+      }
+    }
+
+    /**
+     * Methode die die Höhe eines Charakters updated
+     * @return {void}
+     */
+    updateH() {
+      // Update with cursor.update
+      var tx = db.transaction("one", "readwrite");
+      var store = tx.objectStore("one");
+      store.openCursor(key).onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+          cursor.value.char.h = document.getElementById('edit_id').value;
+          cursor.update(cursor.value);
+          displayDataByKey(key)
+          hidingEditButtons();
+        };
+      }
+    }
+
+    /**
+     * Methode die die Haare eines Charakters updated
+     * @return {void}
+     */
+    updateHair() {
+      // Update with cursor.update
+      var tx = db.transaction("one", "readwrite");
+      var store = tx.objectStore("one");
+      store.openCursor(key).onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+          cursor.value.char.hair = document.getElementById('edit_id').value;
+          cursor.update(cursor.value);
+          displayDataByKey(key)
+          hidingEditButtons();
+        };
+      }
+    }
+
+    /**
+     * Methode die die Augen eines Charakters updated
+     * @return {void}
+     */
+    updateEyes() {
+      // Update with cursor.update
+      var tx = db.transaction("one", "readwrite");
+      var store = tx.objectStore("one");
+      store.openCursor(key).onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+          cursor.value.char.eyes = document.getElementById('edit_id').value;
+          cursor.update(cursor.value);
+          displayDataByKey(key)
+          hidingEditButtons();
+        };
+      }
+    }
+    /**
+     * Methode die die kurze Beschreibung eines Charakters updated
+     * @return {void}
+     */
+    updateDes() {
+      // Update with cursor.update
+      var tx = db.transaction("one", "readwrite");
+      var store = tx.objectStore("one");
+      store.openCursor(key).onsuccess = function (event) {
+        var cursor = event.target.result;
+        if (cursor) {
+          cursor.value.char.des = document.getElementById('edit_id').value;
+          cursor.update(cursor.value);
+          displayDataByKey(key)
+          hidingEditButtons();
+        };
+      }
+    }
+    
+   
+ }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Character.html">Character</a></li></ul><h3>Global</h3><ul><li><a href="global.html#addHtml">addHtml</a></li><li><a href="global.html#addHtml2">addHtml2</a></li><li><a href="global.html#createCharakter">createCharakter</a></li><li><a href="global.html#displayDataByKey">displayDataByKey</a></li><li><a href="global.html#displayEditButtons">displayEditButtons</a></li><li><a href="global.html#emptyInputs">emptyInputs</a></li><li><a href="global.html#getData">getData</a></li><li><a href="global.html#handleAge">handleAge</a></li><li><a href="global.html#handleDescription">handleDescription</a></li><li><a href="global.html#handleEyes">handleEyes</a></li><li><a href="global.html#handleGender">handleGender</a></li><li><a href="global.html#handleHair">handleHair</a></li><li><a href="global.html#handleHeigth">handleHeigth</a></li><li><a href="global.html#handleName">handleName</a></li><li><a href="global.html#handleNationality">handleNationality</a></li><li><a href="global.html#handleRace">handleRace</a></li><li><a href="global.html#hideStartingText">hideStartingText</a></li><li><a href="global.html#hidingEditButtons">hidingEditButtons</a></li><li><a href="global.html#removeElement">removeElement</a></li><li><a href="global.html#schlie%25C3%259FeFenster">schließeFenster</a></li><li><a href="global.html#setAgeFunction">setAgeFunction</a></li><li><a href="global.html#setDesFunction">setDesFunction</a></li><li><a href="global.html#setEyesFunction">setEyesFunction</a></li><li><a href="global.html#setGenderFunction">setGenderFunction</a></li><li><a href="global.html#setHairFunction">setHairFunction</a></li><li><a href="global.html#sethFunction">sethFunction</a></li><li><a href="global.html#setNameFunction">setNameFunction</a></li><li><a href="global.html#setNatFunction">setNatFunction</a></li><li><a href="global.html#setRaceFunction">setRaceFunction</a></li><li><a href="global.html#zeigeFenster">zeigeFenster</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Tue Jan 28 2020 22:39:37 GMT+0100 (GMT+01:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+body {
+	font-family: Avenir, Arial, sans-serif;
+}
+
+dialog,
+button {
+	border-radius: 0 .5rem .5rem;
+	margin: 1rem;
+}
+
+button {
+	padding: 0.5em 1em;
+	font-size: 1em;
+	background-color: #666;
+	border: 1px solid #333;
+	color: white;
+	cursor: pointer;
+}
+
+
+
+dialog {
+	width: 20em;
+	background-color: #fffbf0;
+	border: 1px solid #e7c157;
+	position: absolute;
+	top: 10%;
+	right: 30%;
+	margin: auto;
+	padding: 1em;
+	display: none;
+}
+
+dialog::backdrop {
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+dialog[open] {
+	display: block;
+}

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="jQuery/jquery.mobile.structure-1.4.5.css" />
+    <script src="jQuery/jquery-1.11.1.min.js"></script>
+    <script src="jQuery/jquery.mobile-1.4.5.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/myCSS.css" />
+
+
+</head>
+
+<body>
+
+    <div data-role="page" id="startingPage">
+
+        <div data-role="content" id="content">
+            <img src="img/LogoCP.png" id="logo">
+
+
+            <p>
+                <a href="#chaOverview" data-transition="fade" class="ui-link" id="startText">
+                    <div id="startScreenText"><img id="StartButton" src="img/Gruppe 10.png"></div>
+                </a>
+            </p>
+
+
+
+        </div><!-- /content -->
+
+    </div>
+    <!-- /page -->
+
+    <div data-role="page" id="chaOverview">
+        <div data-role="header" id="Ueberschrift">
+            <h1>Overview</h1>
+        </div><!-- /header -->
+        <div data-role="content" id="content">
+
+            <div id="anfangstext">
+                If you want to create a <br />
+                new character, just press <br />
+                + to get started <br />
+            </div>
+            <div id="CharakterUebersicht" class="flex flex-row item-container">
+
+            </div>
+
+            <p>
+                <a href="#chaCreation1" data-transition="fade"><img id="RButton" src="img/button1.png" /></a>
+            </p>
+
+
+        </div><!-- /content -->
+
+    </div>
+    <!-- /page -->
+
+    <div data-role="page" id="characterView">
+        <div data-role="header" id="Ueberschrift">
+            <a href="#chaOverview" data-transition="fade" class="backButton" id="HeaderIcon"><img id="backarrow"
+                    src="img/BackButton.png"></a>
+            <a href="#bilderGallerie" data-transition="fade" class="backButton" id="HeaderIcon"><img id="picButton"
+                    src="img/bilder.png"></a>
+            <h1>Overview</h1>
+        </div><!-- /header -->
+        <div data-role="content" id="content">
+            <div id="contentToRender">
+
+
+            </div>
+
+
+            <dialog id="dialog">
+
+                <button id="Anmeldung">Edit</button>
+                <a href="#chaOverview" data-transition="fade"><button id="deleteButton">Delete</button></a>
+                <button id="Abbruch">Cancel</button>
+            </dialog>
+
+
+            <p>
+                <button class="editButton" id="start"><img id="RButton" src="img/editPencil.png" /></button>
+            </p>
+
+
+
+
+        </div><!-- /content -->
+
+    </div>
+    <!-- /page -->
+
+
+    <div data-role="page" id="Edit">
+        <div data-role="header" id="Ueberschrift">
+            <h1>Edit</h1>
+        </div><!-- /header -->
+
+        <div data-role="content" id="content">
+
+            <div class="Text1">
+
+            </div>
+            <div>
+                <input type="text" id="edit_id" value="" />
+            </div>
+
+            <p>
+                <a id="confirmation" href="#characterView" data-transition="fade" onclick="updateAttributes()"><img
+                        id="RButton" src="img/BestaetigungsButton.png" /></a>
+            </p>
+
+
+        </div>
+        <!-- /page -->
+    </div>
+
+    <div data-role="page" id="bilderGallerie">
+        <div data-role="header" id="Ueberschrift">
+            <a href="#characterView" data-transition="fade" class="backButton"><img id="backarrow"
+                    src="img/BackButton.png"></a>
+
+            <h1>Overview</h1>
+        </div><!-- /header -->
+        <div data-role="content" id="content">
+
+            <div id="deviceready" class="flex flex-row item-container">
+                <span id="Kameraknopf"><button id="cameraTakePicture">+</button></span>
+                <span><img id="myImage"></span>
+
+            </div>
+
+
+
+
+
+
+
+        </div><!-- /content -->
+
+    </div>
+    <!-- /page -->
+
+    <div data-role="page" id="chaCreation1">
+        <div data-role="header" id="Ueberschrift">
+            <h1>Creation</h1>
+        </div><!-- /header -->
+
+        <div data-role="content" id="content">
+
+            <div class="Text1">
+                What is your characters name?
+            </div>
+            <div>
+                <input type="text" id="name_id" value='' />
+            </div>
+
+            <p>
+                <a id="nameAnchor" href="#chaCreation1" data-transition="fade"><img id="RButton"
+                        src="img/nextButton.png" /></a>
+            </p>
+
+
+        </div>
+        <!-- /page -->
+    </div>
+
+    <div data-role="page" id="chaCreation2">
+        <div data-role="header" id="Ueberschrift">
+            <h1>Creation</h1>
+        </div><!-- /header -->
+
+        <div data-role="content" id="content">
+            <div class="Text1">
+                Basic Information
+            </div>
+            <div>
+                Age:
+                <input type="text" id="age_id" value="" />
+            </div>
+            <div>
+                Gender:
+                <input type="text" id="gender_id" value="" />
+            </div>
+            <div>
+                Race:
+                <input type="text" id="race_id" value="" />
+            </div>
+            <div>
+                Nationality:
+                <input type="text" id="nat_id" value="" />
+            </div>
+
+
+
+            <a href="#chaCreation3" data-transition="fade" id="basicInfoAnchor"><img id="RButton"
+                    src="img/nextButton.png" /></a>
+        </div><!-- /content -->
+
+    </div>
+    <!-- /page -->
+
+
+    <div data-role="page" id="chaCreation3">
+        <div data-role="header" id="Ueberschrift">
+            <h1>Creation</h1>
+        </div><!-- /header -->
+
+        <div data-role="content" id="content">
+            <div class="Text1">
+                Appearence
+            </div>
+            <div>
+                Heigth:
+                <input type="text" id="h_id" value="" />
+            </div>
+            <div>
+                Hair:
+                <input type="text" id="hair_id" value="" />
+            </div>
+            <div>
+                Eyes:
+                <input type="text" id="eyes_id" value="" />
+            </div>
+
+
+
+            <a href="#chaCreation4" data-transition="fade" id="appearenceAnchor"><img id="RButton"
+                    src="img/nextButton.png" /></a>
+        </div><!-- /content -->
+
+    </div>
+    <!-- /page -->
+
+    <div data-role="page" id="chaCreation4">
+        <div data-role="header" id="Ueberschrift">
+            <h1>Creation</h1>
+        </div><!-- /header -->
+
+        <div data-role="content" id="content">
+            <div class="Text1" id="shDes">
+                Short Description
+
+                <textarea type="text" rows="3" cols="15" id="des_id" value=""></textarea>
+            </div>
+
+            <a href="#chaOverview" data-transition="fade" id="descriptionAnchor"><img id="RButton"
+                    src="img/nextButton.png" /></a>
+        </div><!-- /content -->
+
+    </div>
+    <!-- /page -->
+    <script type="text/javascript" src="js/Database.js"></script>
+    <script type="text/javascript" src="js/Character.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>
