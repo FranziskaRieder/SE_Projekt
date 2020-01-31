@@ -27,14 +27,17 @@ var databaseName = 'myDB';
 var databaseVersion = 1;
 var dbReq = window.indexedDB.open(databaseName, databaseVersion);
 var key;
-var attribute = "";
 dbReq.onupgradeneeded = function (event) {
   // Set the db variable to our database so we can use it!  
   db = event.target.result;
 
   // Create an object store named notes. Object stores
   // in databases are where data are stored.
-  let notes = db.createObjectStore('one', { keyPath: "char.id" });
+  let database = db.createObjectStore('one', { keyPath: "char.id" });
+  
+
+
+
 }
 dbReq.onsuccess = function (event) {
   db = event.target.result;
@@ -44,21 +47,42 @@ dbReq.onsuccess = function (event) {
 dbReq.onerror = function (event) {
   alert('error opening database ' + event.target.errorCode);
 }
+/**
+    * Methode die alle Charakter aus der Datenbank lädt
+    * @param() keine Parameter
+    * @return {void}
+    */
+function loadCharacters() {
+  transaction = db.transaction(['one'], "readonly");
+  let store = transaction.objectStore('one');
+  store.openCursor().onsuccess = function (event) {
+    var cursor = event.target.result;
+    if (cursor) {
+      addHtml(cursor.value.char.name, cursor.value.char.id);
+      cursor.continue();
+      chaId = cursor.value.char.id;
+      chaId++;
+      hideStartingText();
 
+    } else {
+      console.log('Entries all displayed.');
+    }
+  };
+}
 
 /**
- * Setzt die Variable key auf den aktuellen Charakter
+ * Setzt die Variable key auf die aktuelle Charakter Id
  * @param {number} id - die Id des aktuellen Charakters
  * @return {void}
  */
-function getData(id) {
+function getKey(id) {
   var transaction = db.transaction('one', 'readwrite');
   var store = transaction.objectStore('one').get(id);
 
 
   store.onsuccess = function (e) {
 
-    var rd = e.target.result;
+    var result = e.target.result;
     key = id;
 
   };

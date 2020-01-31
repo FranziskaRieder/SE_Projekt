@@ -18,58 +18,134 @@
  */
 var app = {
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-        loadCharacters();
-        
 
-        
-       
+
+
+
+
     },
 
     // deviceready Event Handler
     //
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         console.log("device is not ready");
         this.receivedEvent('deviceready');
-        
+
         console.log("device is ready");
-        document.getElementById("cameraTakePicture").addEventListener("click", cameraTakePicture); 
-        
-        
-       
-        
+        document.getElementById("cameraTakePicture").addEventListener("click", imageCapture);
+
+
+
+
+
     },
 
     // Update DOM on a Received Event
-    
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        
 
-        
-        
+    receivedEvent: function (id) {
+        var parentElement = document.getElementById(id);
+
+
+
+
         console.log('Received Event: ' + id);
     }
 };
 
 app.initialize();
 
-function cameraTakePicture() { 
-    navigator.camera.getPicture(onSuccess, onFail, {  
-       quality: 50, 
-       destinationType: Camera.DestinationType.DATA_URL 
-    });  
+
+function getImageFile  (imagepath) {
+    // Create XHR
+    var xhr = new XMLHttpRequest(),
+        blob;
+
+    xhr.open("GET", imagepath, true);
+    // Set the responseType to blob
+    xhr.responseType = "blob";
+
+    xhr.addEventListener("load", function () {
+        if (xhr.status === 200) {
+            console.log("Image retrieved");
+            
+            // Blob as response
+            blob = xhr.response;
+            console.log("Blob:" + blob);
+
+            // Put the received blob into IndexedDB
+            putElephantInDb(blob);
+        }
+    }, false);
+    // Send XHR
+    xhr.send();
+}
+var chamKey = 1;
+function putElephantInDb  (blob) {
+    console.log("Putting elephants in IndexedDB");
+
+    // Open a transaction to the database
+    var transaction = myDB2.transaction(["two"], 'readwrite');
+
+    // Put the blob into the dabase
+    var put = transaction.objectStore("two").put({blob});
+    chamKey++;
+    getDBLength();
+};
+function imageCapture() {
+    var options = {
+       limit: 1
+    };
+    navigator.device.capture.captureImage(onSuccess, onError, options);
+ 
+    function onSuccess(mediaFiles) {
+       var i, path, len;
+       for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+          path = mediaFiles[i].fullPath;
+          name = mediaFiles[i].localURL;
+          getImageFile(name);
+          console.log(mediaFiles);
+          addPics(path);
+          
+       }
+    }
+ 
+    function onError(error) {
+       navigator.notification.alert('Error!');
+    }
+ }
+ function loadPics() {
+   
     
-    function onSuccess(imageData) { 
-       var image = document.getElementById('myImage'); 
-       image.src = "data:image/jpeg;base64," + imageData; 
+      var transaction = myDB2.transaction(['two'], 'readonly');
+    transaction.objectStore('two').get(1).onsuccess = function (event) {
+      var imgFile = event.target.result;
+      console.log(imgFile);
+       
+  
+        // Get window.URL object
+        var URL = window.URL || window.webkitURL;
+  
+        // Create and revoke ObjectURL
+        var imgURL = URL.createObjectURL(imgFile.blob);
+  
+        // Set img src to ObjectURL
+       addPics(imgURL);
+        // Revoking ObjectURL
+        URL.revokeObjectURL(imgURL);
+    
       
-    }  
-    
-    function onFail(message) { 
-       alert('Failed because: ' + message); 
-    } 
- } 
+    };
+  }
+ 
+
+
+
+
+
+
+
+

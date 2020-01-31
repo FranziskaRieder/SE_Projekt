@@ -44,18 +44,6 @@ body {
         
     }
 
-        .item-container span:nth-child(1) {
-            
-
-        }
-
-        .item-container span:nth-child(2) {
-            
-        }
-
-        .item-container span:nth-child(3) {
-            
-        }
 
      
 
@@ -107,12 +95,13 @@ body {
     text-transform:none;
 }
 #Text2 {
-    display: flex;
+    display: block;
     justify-content: right;
     color: #333333;
     font-size: 20px;
-    text-align: right;
     text-transform:none;
+    word-wrap: break-word
+   
 }
 
 
@@ -179,7 +168,7 @@ body {
     resize: none;
     text-align: center;
     width: 33vw;
-    top: 20%;
+    top: 25%;
     padding: 12px 20px;
     font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
     color:  #333333;;
@@ -206,18 +195,6 @@ dialog{
 	margin: 1rem;
 }
 
-@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
-    html {
-      transform: rotate(-90deg);
-      transform-origin: left top;
-      width: 100vh;
-      overflow-x: hidden;
-      position: absolute;
-      top: 100%;
-      left: 0;
-    }
-  }
-  
 
 dialog,
 button {
@@ -303,3 +280,73 @@ dialog[open] {
     top: 7vh;
 
 }
+.editButton{
+    position: absolute;
+    position: fixed;
+    width: 25%;
+    height:25%;
+    right: 10%;
+    bottom:5%;
+    z-index: 100;
+    background-color: transparent;
+    outline: black;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media only screen and (orientation: landscape) {
+    .item-container span {
+        min-width: 32%;
+        max-width: 32%;
+        min-height: 32vh;
+        display: flex;
+        border: 1px solid #707070;
+        background: #0C373D;
+        color: #D4FD70;
+        align-items: center;
+        justify-content: center;
+        margin: 0.3vw;
+    }
+    #RButton {
+        position: absolute;
+        position: fixed;
+        width: 15%;
+        height:auto;
+        right: 5%;
+        bottom:5%;
+      }
+      #backarrow{
+        position: absolute;
+        left: 5%;
+        width: 10%;
+        height: auto;
+        top: -20%;
+    }
+    #picButton{
+        position: absolute;
+        right: 5%;
+        width: 7%;
+        height: auto;
+        top: 0%;
+    }
+    #logo{
+        position: relative;
+        width: 40vw;
+        height: auto;
+        left: 30%;
+        top: 0;
+    
+    }
+    #StartButton{
+        position: absolute;
+        width: 50%;
+        height: auto;
+        bottom: -15%;
+        right:24%;
+        text-align: center;
+        animation-name: start ;
+        animation-duration: 5s;
+        animation-iteration-count: infinite;
+    }
+  }

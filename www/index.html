@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <link rel="stylesheet" href="jQuery/jquery.mobile.structure-1.4.5.css" />
@@ -14,7 +14,7 @@
 
 </head>
 
-<body>
+<body onload="loadCharacters()">
 
     <div data-role="page" id="startingPage">
 
@@ -64,8 +64,7 @@
         <div data-role="header" id="Ueberschrift">
             <a href="#chaOverview" data-transition="fade" class="backButton" id="HeaderIcon"><img id="backarrow"
                     src="img/BackButton.png"></a>
-            <a href="#bilderGallerie" data-transition="fade" class="backButton" id="HeaderIcon"><img id="picButton"
-                    src="img/bilder.png"></a>
+
             <h1>Overview</h1>
         </div><!-- /header -->
         <div data-role="content" id="content">
@@ -120,31 +119,6 @@
         <!-- /page -->
     </div>
 
-    <div data-role="page" id="bilderGallerie">
-        <div data-role="header" id="Ueberschrift">
-            <a href="#characterView" data-transition="fade" class="backButton"><img id="backarrow"
-                    src="img/BackButton.png"></a>
-
-            <h1>Overview</h1>
-        </div><!-- /header -->
-        <div data-role="content" id="content">
-
-            <div id="deviceready" class="flex flex-row item-container">
-                <span id="Kameraknopf"><button id="cameraTakePicture">+</button></span>
-                <span><img id="myImage"></span>
-
-            </div>
-
-
-
-
-
-
-
-        </div><!-- /content -->
-
-    </div>
-    <!-- /page -->
 
     <div data-role="page" id="chaCreation1">
         <div data-role="header" id="Ueberschrift">
@@ -261,6 +235,7 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/index.js"></script>
 
-</body>
+
+</body onload="loadCharacters()">
 
 </html>

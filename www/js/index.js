@@ -18,58 +18,53 @@
  */
 var app = {
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-        char.loadCharacters();
-        
 
-        
-       
+
+
+
+
     },
 
     // deviceready Event Handler
     //
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         console.log("device is not ready");
         this.receivedEvent('deviceready');
-        
+
         console.log("device is ready");
-        document.getElementById("cameraTakePicture").addEventListener("click", cameraTakePicture); 
-        
-        
-       
-        
+        document.getElementById("cameraTakePicture").addEventListener("click", imageCapture);
+
+
+
+
+
     },
 
     // Update DOM on a Received Event
-    
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        
 
-        
-        
+    receivedEvent: function (id) {
+        var parentElement = document.getElementById(id);
+
+
+
+
         console.log('Received Event: ' + id);
     }
 };
 
 app.initialize();
 
-function cameraTakePicture() { 
-    navigator.camera.getPicture(onSuccess, onFail, {  
-       quality: 50, 
-       destinationType: Camera.DestinationType.DATA_URL 
-    });  
-    
-    function onSuccess(imageData) { 
-       var image = document.getElementById('myImage'); 
-       image.src = "data:image/jpeg;base64," + imageData; 
-      
-    }  
-    
-    function onFail(message) { 
-       alert('Failed because: ' + message); 
-    } 
- } 
+
+
+
+
+
+
+
+
+
+
